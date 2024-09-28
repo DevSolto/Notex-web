@@ -1,5 +1,4 @@
 import { ClasseCard } from "@/components/classeCard";
-import { Container } from "@/components/container";
 import { ClassesFilter } from "@/components/filters/classesFilter";
 import { useEffect, useState } from "react"; ''
 import axios from 'axios';
@@ -35,7 +34,7 @@ export function Classes() {
   }, []);
 
   return (
-    <Container>
+    <>
       <header className="flex w-full justify-between mb-5">
         <div>
           <h1 className="text-2xl">Turmas</h1>
@@ -66,6 +65,6 @@ export function Classes() {
         )}
         {error && <p className="text-red-500">{error}</p>}
       </main>
-    </Container>
+    </>
   );
 }
