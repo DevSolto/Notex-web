@@ -1,4 +1,4 @@
-import { IoDocumentLockOutline, IoDocumentTextOutline, IoPeopleOutline, IoPersonAddOutline, IoTrashBinOutline } from "react-icons/io5"
+import { IoDocumentLockOutline, IoDocumentTextOutline, IoPeopleOutline, IoPersonAddOutline } from "react-icons/io5"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuShortcut, ContextMenuTrigger } from "../ui/context-menu"
