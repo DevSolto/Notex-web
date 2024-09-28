@@ -14,7 +14,7 @@ const appRoutes = {
   path: "/",
   element: (
     <Container>
-      <Outlet />  
+      <Outlet />
     </Container>
   ),
   children: [
