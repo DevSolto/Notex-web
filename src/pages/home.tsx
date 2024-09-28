@@ -1,12 +1,9 @@
-import { SideBar } from "@/components/sideBar";
+import { Container } from "@/components/container";
 
 export function Home() {
   return (
-    <div className="flex">
-      <SideBar />
-      <main>
-        <h1>Home</h1>
-      </main>
-    </div>
+    <Container>
+      <p>Home</p>
+    </Container>
   )
 }

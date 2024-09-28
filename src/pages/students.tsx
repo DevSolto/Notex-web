@@ -1,12 +1,9 @@
-import { SideBar } from "@/components/sideBar";
+import { Container } from "@/components/container";
 
 export function Students() {
   return (
-    <div className="flex">
-      <SideBar />
-      <main>
-        <h1>estudantes</h1>
-      </main>
-    </div>
+    <Container>
+      <p>estudantes</p>
+    </Container>
   )
 }

@@ -1,9 +1,9 @@
 import { Container } from "@/components/container";
 
-export function Teachers() {
+export function Calendar() {
   return (
     <Container>
-      <p>professores</p>
+      <p>calendario</p>
     </Container>
   )
 }
