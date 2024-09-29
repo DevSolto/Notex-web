@@ -7,9 +7,10 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import { LucideLoaderCircle } from 'lucide-react';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '../ui/select';
 
 const formSchema = z.object({
-  title: z.string().min(1, "O título é obrigatório."),
+  title: z.string().min(1, "O nome da turma é obrigatório."),
   code: z.string().min(1, "O código é obrigatório."),
   year: z.string().min(4, "O ano deve ter 4 dígitos."),
 });
@@ -29,11 +30,14 @@ export const AddForm = (props: AddFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (data: FormData) => {
+    console.log(data);
+
     try {
       setIsSending(true)
       const response = await axios.post('https://q01b4kvh-4000.brs.devtunnels.ms/classes', { ...data, period: 1 });
@@ -61,19 +65,36 @@ export const AddForm = (props: AddFormProps) => {
       <div className='space-y-1'>
         <label>Título</label>
         <Input {...register("title")} />
-        {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
+        {errors.title && <p className='text-red-500'>{errors.title?.message}</p>}
       </div>
 
       <div className='space-y-1'>
         <label>Código</label>
         <Input {...register("code")} />
-        {errors.code && <p className='text-red-500'>{errors.code.message}</p>}
+        {errors.code && <p className='text-red-500'>{errors.code?.message}</p>}
       </div>
 
       <div className='space-y-1'>
         <label>Ano</label>
-        <Input {...register("year")} />
-        {errors.year && <p className='text-red-500'>{errors.year.message}</p>}
+        {/* Select para o campo de ano */}
+        <Select
+          onValueChange={(value) => setValue("year", value)} // Atualiza o valor do campo 'year'
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Selecione o ano" />
+          </SelectTrigger>
+          <SelectContent>
+            {Array.from({ length: 4 }, (_, i) => {
+              const year = new Date().getFullYear() + i; // Lista dos últimos 10 anos
+              return (
+                <SelectItem key={year} value={String(year)}>
+                  {year}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+        {errors.year && <p className='text-red-500'>{errors.year?.message}</p>}
       </div>
 
       {

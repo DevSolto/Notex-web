@@ -5,9 +5,10 @@ import { Input } from '../ui/input';
 import axios from 'axios';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '../ui/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LucideLoaderCircle } from 'lucide-react';
 import { ClassData } from '@/pages/classes';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
 const formSchema = z.object({
   title: z.string().optional(),
@@ -35,6 +36,7 @@ export const UpdateForm = (props: UpdateFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
@@ -44,8 +46,8 @@ export const UpdateForm = (props: UpdateFormProps) => {
       setIsSending(true)
       const response = await axios.patch(`https://q01b4kvh-4000.brs.devtunnels.ms/classes/${props.id}`, { ...data });
 
-      props.setClasses(prevClasses => 
-        prevClasses.map(classe => 
+      props.setClasses(prevClasses =>
+        prevClasses.map(classe =>
           classe.id === props.id ? { ...classe, ...data } : classe
         )
       );
@@ -68,6 +70,10 @@ export const UpdateForm = (props: UpdateFormProps) => {
     }
   };
 
+  useEffect(() => {
+    setValue("year", props.year);
+  }, [props.year, setValue]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
       <div className='space-y-1'>
@@ -84,8 +90,24 @@ export const UpdateForm = (props: UpdateFormProps) => {
 
       <div className='space-y-1'>
         <label>Ano</label>
-        <Input {...register("year")} defaultValue={props.year} />
-        {errors.year && <p className='text-red-500'>{errors.year.message}</p>}
+        <Select
+          onValueChange={(value) => setValue("year", value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Selecione o ano" />
+          </SelectTrigger>
+          <SelectContent>
+            {Array.from({ length: 4 }, (_, i) => {
+              const year = new Date().getFullYear() + i;
+              return (
+                <SelectItem key={year} value={String(year)}>
+                  {year}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+        {errors.year && <p className='text-red-500'>{errors.year?.message}</p>}
       </div>
 
       {
