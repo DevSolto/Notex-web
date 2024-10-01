@@ -16,8 +16,7 @@ const user = {
 
 export function Header() {
   return (
-    <header className="z-50 sticky top-0 bg-white p-5 flex justify-between items-center w-full border-b">
-      <Input type="search" placeholder="Procurar..." className="w-72" />
+    <header className="z-50 sticky top-0 bg-white p-5 flex justify-end items-center w-full border-b">
       <div className="flex gap-3">
         <Button variant={'ghost'} className="border-2 rounded-full py-6 hover:bg-orange-500 hover:text-white transition-all">
           <IoNotificationsOutline className="text-lg" />

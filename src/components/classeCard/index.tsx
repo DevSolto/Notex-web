@@ -5,6 +5,7 @@ import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuShortcut, 
 import { UpdateClasse } from "../updateClasse"
 import { DeleteClasse } from "../deleteClasse"
 import { ClassData } from "@/pages/classes"
+import { AddUserClasse } from "../addUserClasse"
 
 type ClasseCardProps = {
   id: string
@@ -21,7 +22,7 @@ export function ClasseCard(props: ClasseCardProps) {
       <ContextMenuTrigger>
         <Card className="shadow">
           <CardHeader className="flex-row justify-between items-center">
-            <CardTitle className="text-neutral-700 font-medium flex gap-3">
+            <CardTitle className="text-neutral-700 font-medium flex gap-3 capitalize">
               {props.title}
               <span className="font-normal">({props.year})</span>
             </CardTitle>
@@ -50,12 +51,9 @@ export function ClasseCard(props: ClasseCardProps) {
           code={props.code}
           year={props.year}
         />
-        <ContextMenuItem >
-          Adicionar aluno
-          <ContextMenuShortcut>
-            <IoPersonAddOutline className="text-lg" />
-          </ContextMenuShortcut>
-        </ContextMenuItem>
+
+        <AddUserClasse />
+
         <ContextMenuItem >
           Adicionar Horário
           <ContextMenuShortcut>

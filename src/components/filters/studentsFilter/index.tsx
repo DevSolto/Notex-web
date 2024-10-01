@@ -1,19 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { HttpParams } from "@/pages/classes";
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 
-type ClassesFilterProps = {
+type HttpParams = {
+  page: string;
+  limit: string;
+  orderBy: string;
+  order: string;
+  role: string;
+};
+
+type UsersFilterProps = {
   httpParams: HttpParams;
   setHttpParams: React.Dispatch<React.SetStateAction<HttpParams>>;
-  totalPages: number
-}
+  totalPages: number;
+};
 
-export function ClassesFilter(props: ClassesFilterProps) {
+export function UsersFilter(props: UsersFilterProps) {
   const years: number[] = [];
 
-
+  // Adicionando 4 anos futuros e 5 anos passados
   Array.from({ length: 4 }, (_, i) => {
     const year = new Date().getFullYear() + (i + 1);
     years.push(year);
@@ -37,42 +44,11 @@ export function ClassesFilter(props: ClassesFilterProps) {
     });
   };
 
+
   return (
-    <div className="w-full flex justify-between">
+    <div className="w-full flex justify-between mb-5">
       <div className="flex gap-3">
         <Input type="search" placeholder="Procurar..." className="w-72" />
-        <Select
-          onValueChange={(value) => {
-            if (value !== 'all') {
-              props.setHttpParams({
-                ...props.httpParams,
-                year: value
-              });
-            } else {
-              props.setHttpParams({
-                ...props.httpParams,
-                year: ''
-              });
-            }
-          }}
-        >
-          <SelectTrigger className="w-36">
-            <SelectValue placeholder="Ano" />
-          </SelectTrigger>
-          <SelectContent className="bg-white">
-            <SelectGroup>
-              {years.map((value) => (
-                <SelectItem key={value} value={String(value)}>
-                  {value}
-                </SelectItem>
-              ))}
-              <SelectItem value='all'>
-                Todos
-              </SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
         <Select
           onValueChange={(value) => {
             const [orderBy, order] = value.split(":");
@@ -83,29 +59,29 @@ export function ClassesFilter(props: ClassesFilterProps) {
             });
           }}
         >
-          <SelectTrigger className=" w-40">
-            <SelectValue placeholder='Ordenar por...' />
+          <SelectTrigger className="w-40">
+            <SelectValue placeholder="Ordenar por..." />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="title:asc">Nome (Crescente)</SelectItem>
-              <SelectItem value="title:desc">Nome (Decrescente)</SelectItem>
+              <SelectItem value="name:asc">Nome (Crescente)</SelectItem>
+              <SelectItem value="name:desc">Nome (Decrescente)</SelectItem>
             </SelectGroup>
             <SelectGroup>
-              <SelectItem value="code:asc">Código (Crescente)</SelectItem>
-              <SelectItem value="code:desc">Código (Decrescente)</SelectItem>
+              <SelectItem value="email:asc">Email (Crescente)</SelectItem>
+              <SelectItem value="email:desc">Email (Decrescente)</SelectItem>
             </SelectGroup>
             <SelectGroup>
-              <SelectItem value="year:asc">Ano (Crescente)</SelectItem>
-              <SelectItem value="year:desc">Ano (Decrescente)</SelectItem>
+              <SelectItem value="cpf:asc">CPF (Crescente)</SelectItem>
+              <SelectItem value="cpf:desc">CPF (Decrescente)</SelectItem>
             </SelectGroup>
-            <SelectGroup >
+            <SelectGroup>
               <SelectItem value="createdAt:asc">Data de Criação (Crescente)</SelectItem>
               <SelectItem value="createdAt:desc">Data de Criação (Decrescente)</SelectItem>
             </SelectGroup>
-            <SelectGroup >
-              <SelectItem value="updatedAt:asc">Data de atualização (Crescente)</SelectItem>
-              <SelectItem value="updatedAt:desc">Data de atualização (Decrescente)</SelectItem>
+            <SelectGroup>
+              <SelectItem value="updatedAt:asc">Data de Atualização (Crescente)</SelectItem>
+              <SelectItem value="updatedAt:desc">Data de Atualização (Decrescente)</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -120,9 +96,7 @@ export function ClassesFilter(props: ClassesFilterProps) {
           <IoArrowBackOutline />
         </Button>
 
-        <span>
-          {props.httpParams.page || '1'}
-        </span>
+        <span>{props.httpParams.page || '1'}</span>
 
         <Button
           className="bg-white border text-black shadow-sm hover:bg-neutral-100"
