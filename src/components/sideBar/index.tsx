@@ -59,7 +59,7 @@ export function SideBar() {
         <img src={logo} alt="Logo do Senac" className='w-3/4' />
         <nav className='flex flex-col gap-3 text- '>
           {menuItems.map((item) => (
-            <a className="flex gap-2 items-center  px-2 py-3 hover:bg-orange-500 hover:text-white rounded-lg transition-all hover:shadow-lg" key={item.link} href={item.link}>
+            <a className="flex gap-2 items-center  px-2 py-3 hover:bg-primary hover:text-white rounded-lg transition-all hover:shadow-lg" key={item.link} href={item.link}>
               <span >
                 {item.icon}
               </span>

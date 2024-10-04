@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { User } from './columns';
 import axios from "axios";
-import { DataTable } from "../ui/dataTable";
+import { DataTable } from "../ui/data-table";
 import { UsersFilter } from "../filters/studentsFilter";
-import { ColumnDef, OnChangeFn, RowSelectionState } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 
 export type HttpParams = {
   page: string;
@@ -14,10 +14,9 @@ export type HttpParams = {
 };
 
 type UserTableProps = {
-  role: 'STUDENT' | 'TEACHER'
-  columns: ColumnDef<User>[]
-  rowSelection: RowSelectionState;
-  onRowSelectionChange: OnChangeFn<RowSelectionState>;
+  role: 'STUDENT' | 'TEACHER';
+  columns: ColumnDef<User>[];
+  data?: User[];
 };
 
 export function UserTable(props: UserTableProps) {
@@ -56,20 +55,22 @@ export function UserTable(props: UserTableProps) {
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, [httpParams]); // Atualiza sempre que os parâmetros de consulta mudam
-
-  const handleUserAdded = () => {
-    fetchUsers();
-  };
+    if (!props.data) {
+      fetchUsers();
+    } else {
+      setUsers(props.data);
+    }
+  }, [httpParams, props.data]);  // Observa httpParams e props.data
 
   return (
     <>
-      <UsersFilter
-        httpParams={httpParams}
-        setHttpParams={setHttpParams}
-        totalPages={totalPages}
-      />
+      {!props.data && (
+        <UsersFilter
+          httpParams={httpParams}
+          setHttpParams={setHttpParams}
+          totalPages={totalPages}
+        />
+      )}
 
       {loading ? (
         <p>Carregando...</p>

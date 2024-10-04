@@ -1,13 +1,16 @@
 import { IoPersonAddOutline } from "react-icons/io5";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { UserTable } from "../userTable";
 import { columns } from "./columns";
 import { useState } from "react";
 import { RowSelectionState } from "@tanstack/react-table";
+import { AddUserClasseTable } from "./addUserClasseTable";
 
-export function AddUserClasse() {
+type AddUserClasseProps = {
+  casseId: string
+}
+
+export function AddUserClasse(props: AddUserClasseProps) {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  console.log(rowSelection);
 
   return (
     <Dialog>
@@ -24,11 +27,11 @@ export function AddUserClasse() {
             Selecione os estudantes que você quer adicionar a turma
           </DialogDescription>
         </DialogHeader>
-        <UserTable
-          role="STUDENT"
+        <AddUserClasseTable
           columns={columns}
           onRowSelectionChange={setRowSelection}
           rowSelection={rowSelection}
+          classeId={props.casseId}
         />
       </DialogContent>
     </Dialog>

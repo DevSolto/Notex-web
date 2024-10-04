@@ -6,6 +6,7 @@ import { UpdateClasse } from "../updateClasse"
 import { DeleteClasse } from "../deleteClasse"
 import { ClassData } from "@/pages/classes"
 import { AddUserClasse } from "../addUserClasse"
+import { Classe } from "./classe"
 
 type ClasseCardProps = {
   id: string
@@ -36,9 +37,7 @@ export function ClasseCard(props: ClasseCardProps) {
                 <IoPeopleOutline className="text-2xl" /> Estudantes: {props.numberOfStudents}
               </p>
 
-              <Button>
-                Horário
-              </Button>
+              <Classe classeId={props.id} />
             </div>
           </CardContent>
         </Card>
@@ -52,7 +51,7 @@ export function ClasseCard(props: ClasseCardProps) {
           year={props.year}
         />
 
-        <AddUserClasse />
+        <AddUserClasse casseId={props.id} />
 
         <ContextMenuItem >
           Adicionar Horário

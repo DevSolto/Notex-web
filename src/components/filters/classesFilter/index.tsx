@@ -73,42 +73,6 @@ export function ClassesFilter(props: ClassesFilterProps) {
           </SelectContent>
         </Select>
 
-        <Select
-          onValueChange={(value) => {
-            const [orderBy, order] = value.split(":");
-            props.setHttpParams({
-              ...props.httpParams,
-              orderBy,
-              order,
-            });
-          }}
-        >
-          <SelectTrigger className=" w-40">
-            <SelectValue placeholder='Ordenar por...' />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="title:asc">Nome (Crescente)</SelectItem>
-              <SelectItem value="title:desc">Nome (Decrescente)</SelectItem>
-            </SelectGroup>
-            <SelectGroup>
-              <SelectItem value="code:asc">Código (Crescente)</SelectItem>
-              <SelectItem value="code:desc">Código (Decrescente)</SelectItem>
-            </SelectGroup>
-            <SelectGroup>
-              <SelectItem value="year:asc">Ano (Crescente)</SelectItem>
-              <SelectItem value="year:desc">Ano (Decrescente)</SelectItem>
-            </SelectGroup>
-            <SelectGroup >
-              <SelectItem value="createdAt:asc">Data de Criação (Crescente)</SelectItem>
-              <SelectItem value="createdAt:desc">Data de Criação (Decrescente)</SelectItem>
-            </SelectGroup>
-            <SelectGroup >
-              <SelectItem value="updatedAt:asc">Data de atualização (Crescente)</SelectItem>
-              <SelectItem value="updatedAt:desc">Data de atualização (Decrescente)</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
       </div>
 
       <div className="flex gap-5 items-center">

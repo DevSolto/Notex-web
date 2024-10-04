@@ -8,6 +8,7 @@ import { Schedules } from './pages/schedules';
 import { Calendar } from './pages/calendar';
 import { Statement } from './pages/statement';
 import { Container } from './components/container';
+import { ThemeProvider } from './components/theme-provider';
 
 // Rotas com o Container
 const appRoutes = {
@@ -38,6 +39,8 @@ const routes = createBrowserRouter([appRoutes, loginRoute]);
 
 export function App() {
   return (
-    <RouterProvider router={routes} />
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <RouterProvider router={routes} />
+    </ThemeProvider>
   );
 }

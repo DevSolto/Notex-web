@@ -11,6 +11,7 @@ export interface ClassData {
   code: string;
   year: string;
   period: number;
+  amountStudents: number;
 }
 
 export type HttpParams = {
@@ -79,7 +80,7 @@ export function Classes() {
                 id={classe.id}
                 title={classe.title}
                 code={classe.code}
-                numberOfStudents={35}
+                numberOfStudents={classe.amountStudents}
                 year={classe.year}
               />
             ))}
