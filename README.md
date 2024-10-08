@@ -1,51 +1,72 @@
-# React + TypeScript + Vite
+# Notex Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição
 
-Currently, two official plugins are available:
+Este é o projeto front-end do **Notex Web**, uma aplicação React com TypeScript, utilizando Vite como bundler. O projeto usa diversas bibliotecas para a criação de UI e gerenciamento de formulários, como Radix UI, React Hook Form e Zod.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requisitos
 
-## Expanding the ESLint configuration
+- Node.js (versão 18.x ou superior)
+- NPM ou Yarn
+- Banco de dados ou API backend funcionando (assumido que seja o projeto backend já fornecido)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Passos para configurar o ambiente de desenvolvimento
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone o repositório:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+   ```bash
+   git clone https://github.com/DevSolto/Notex-Web.git
+   cd Notex-Web
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Instale as dependências:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# Notex-web
+3. Crie o arquivo `.env` na raiz do projeto para configurar as variáveis de ambiente.
+
+   O arquivo `.env` pode conter a URL da API do backend:
+
+   ```bash
+   VITE_API_URL=http://localhost:4000
+   ```
+
+4. Rode o projeto localmente:
+
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+   ```
+
+   O projeto estará disponível em `http://localhost:5173`.
+
+## Scripts Disponíveis
+
+- `dev`: Inicia o ambiente de desenvolvimento com Vite.
+- `build`: Compila o projeto para produção.
+- `lint`: Executa o linter para verificar problemas de código.
+- `preview`: Pré-visualiza a versão de produção localmente.
+
+## Tecnologias Utilizadas
+
+- **React**: Biblioteca para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipos estáticos.
+- **TailwindCSS**: Framework de utilitários CSS para estilização.
+- **Radix UI**: Componentes acessíveis e semânticos de UI.
+- **React Hook Form**: Gerenciamento de formulários em React.
+- **Zod**: Validação de esquema e parsing de objetos.
+
+## Estrutura de Pastas
+
+- `src/`: Contém todo o código-fonte do projeto.
+  - `components/`: Componentes reutilizáveis de UI.
+  - `pages/`: Páginas da aplicação.
+
+## Observações
+
+- Certifique-se de que o backend está rodando corretamente e que a URL configurada no `.env` aponta para ele.
