@@ -1,12 +1,12 @@
 import { User } from "@/components/userTable/columns";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ReportCard } from "@/components/reportCard";
+import { ReportCard, UserReport } from "@/components/reportCard";
 import { HttpParams, ReportsFilter } from "@/components/filters/reportsFilter";
 import { LucideLoaderCircle } from "lucide-react";
 import { AddReport } from "@/components/addReport";
 
-interface Report {
+export type Report = {
   id: string;
   title: string;
   description: string;
@@ -15,6 +15,7 @@ interface Report {
   creatorId: string;
   creator: User;
   userCount: number;
+  UsersReport: UserReport[]
 }
 export function Statement() {
   const [data, setData] = useState<Report[]>([]);
@@ -73,6 +74,7 @@ export function Statement() {
                   creatorName={report.creator.name}
                   description={report.description}
                   title={report.title}
+                  usersReport={report.UsersReport}
                 />
               )
             })}

@@ -8,19 +8,16 @@ export type HttpParams = {
   limit: string;
   orderBy: string;
   order: string;
-  role: string;
-  search?: string;  // Adiciona campo para busca
+  search?: string; 
 };
 
-type UsersFilterProps = {
+type SubjectsFilterProps = {
   httpParams: HttpParams;
   setHttpParams: React.Dispatch<React.SetStateAction<HttpParams>>;
   totalPages: number;
 };
 
-export function UsersFilter(props: UsersFilterProps) {
-  const years: number[] = [];
-
+export function SubjectsFilter(props: SubjectsFilterProps) {
   const [search, setSearch] = useState(props.httpParams.search || '');
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,25 +25,12 @@ export function UsersFilter(props: UsersFilterProps) {
     props.setHttpParams((prevParams) => ({
       ...prevParams,
       search: e.target.value,
-      page: '1',
+      page: '1'
     }));
   };
 
-  Array.from({ length: 4 }, (_, i) => {
-    const year = new Date().getFullYear() + (i + 1);
-    years.push(year);
-  });
-
-  Array.from({ length: 5 }, (_, i) => {
-    const year = new Date().getFullYear() - i;
-    years.push(year);
-  });
-
-  years.sort((a, b) => b - a);
-
   const handlePageChange = (direction: 'next' | 'previous') => {
     const currentPage = parseInt(props.httpParams.page, 10) || 1;
-
     const newPage = direction === 'next' ? currentPage + 1 : Math.max(1, currentPage - 1);
 
     props.setHttpParams({
@@ -55,11 +39,16 @@ export function UsersFilter(props: UsersFilterProps) {
     });
   };
 
-
   return (
     <div className="w-full flex justify-between mb-5">
       <div className="flex gap-3">
-        <Input onChange={handleSearchChange} type="search" placeholder="Procurar..." className="w-72" />
+        <Input
+          onChange={handleSearchChange}
+          type="search"
+          value={search}
+          placeholder="Procurar disciplina..."
+          className="w-72"
+        />
       </div>
 
       <div className="flex gap-5 items-center">

@@ -1,55 +1,54 @@
 import { useEffect, useState } from "react";
-import { User } from './columns';
 import axios from "axios";
 import { DataTable } from "../ui/data-table";
-import { UsersFilter } from "../filters/studentsFilter";
 import { ColumnDef } from "@tanstack/react-table";
+import { Subject } from "./columns";
+import { SubjectsFilter } from "../filters/subjectsFilter";
 
 export type HttpParams = {
   page: string;
   limit: string;
   orderBy: string;
   order: string;
-  role: string;
-  search?: string;  // Adiciona campo para busca
+  search?: string;  // Campo para busca por nome de disciplinas
 };
 
-type UserTableProps = {
-  role: 'STUDENT' | 'TEACHER';
-  columns: ColumnDef<User>[];
-  data?: User[];
+type SubjectTableProps = {
+  columns: ColumnDef<Subject>[];
+  data?: Subject[];
 };
 
-export function UserTable(props: UserTableProps) {
-  const [users, setUsers] = useState<User[]>([]);
+export function SubjectTable(props: SubjectTableProps) {
+  const [subjects, setSubjects] = useState<Subject[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [httpParams, setHttpParams] = useState<HttpParams>({
     limit: '8',
     order: 'asc',
-    orderBy: 'name',
+    orderBy: 'name',  // Ordenar pelo nome da disciplina
     page: '1',
-    role: props.role,
-    search: '',  // Inicializa com string vazia para busca
+    search: '',  // Inicializa com string vazia para a busca por nome
   });
 
-  const fetchUsers = async () => {
+  const fetchSubjects = async () => {
     try {
       setLoading(true);
       setError(null);
       const response = await axios.get<{
-        users: User[];
+        subjects: Subject[];
         total: number;
         totalPages: number;
       }>(
-        `http://localhost:4000/users?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}&role=${httpParams.role}&search=${httpParams.search || ''}`
+        `http://localhost:4000/subjects?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}&search=${httpParams.search || ''}`
       );
+      console.log(response);
+
       setTotalPages(response.data.totalPages);
-      setUsers(response.data.users);
+      setSubjects(response.data.subjects);
     } catch (error) {
-      setError('Erro ao carregar usuários');
-      console.error('Erro ao buscar usuários:', error);
+      setError('Erro ao carregar disciplinas');
+      console.error('Erro ao buscar disciplinas:', error);
     } finally {
       setLoading(false);
     }
@@ -57,16 +56,16 @@ export function UserTable(props: UserTableProps) {
 
   useEffect(() => {
     if (!props.data) {
-      fetchUsers();
+      fetchSubjects();
     } else {
-      setUsers(props.data);
+      setSubjects(props.data);
     }
-  }, [httpParams, props.data]);  // Observa httpParams e props.data
+  }, [httpParams, props.data]);  // Observa mudanças em httpParams e props.data
 
   return (
     <>
       {!props.data && (
-        <UsersFilter
+        <SubjectsFilter
           httpParams={httpParams}
           setHttpParams={setHttpParams}
           totalPages={totalPages}
@@ -77,13 +76,13 @@ export function UserTable(props: UserTableProps) {
         <p>Carregando...</p>
       ) : error ? (
         <p className="text-red-500">{error}</p>
-      ) : users.length > 0 ? (
+      ) : subjects.length > 0 ? (
         <DataTable
           columns={props.columns}
-          data={users}
+          data={subjects}
         />
       ) : (
-        <p>Nenhum usuário encontrado.</p>
+        <p>Nenhuma disciplina encontrada.</p>
       )}
     </>
   );
