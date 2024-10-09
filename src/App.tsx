@@ -9,6 +9,7 @@ import { Calendar } from './pages/calendar';
 import { Statement } from './pages/statement';
 import { Container } from './components/container';
 import { ThemeProvider } from './components/theme-provider';
+import { Admins } from './pages/admins';
 
 // Rotas com o Container
 const appRoutes = {
@@ -25,8 +26,7 @@ const appRoutes = {
     { path: "/turmas", element: <Classes /> },
     { path: "/disciplinas", element: <Subjects /> },
     { path: "/comunicados", element: <Statement /> },
-    { path: "/calendario", element: <Calendar /> },
-    { path: "/horario", element: <Schedules /> },
+    { path: "/coordenadores", element: <Admins /> },
   ],
 };
 

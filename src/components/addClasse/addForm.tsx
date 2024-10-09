@@ -40,7 +40,7 @@ export const AddForm = (props: AddFormProps) => {
 
     try {
       setIsSending(true)
-      const response = await axios.post('https://q01b4kvh-4000.brs.devtunnels.ms/classes', { ...data, period: 1 });
+      const response = await axios.post('http://localhost:4000/classes', { ...data, period: 1 });
       setIsSending(false)
       console.log("Resposta da API:", response.data);
       props.setDialogOpen(false);

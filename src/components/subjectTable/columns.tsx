@@ -1,5 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { IoBookOutline, IoCopyOutline, IoPencilOutline, IoTrashBinOutline } from 'react-icons/io5';
+import { IoBookOutline, IoTrashBinOutline } from 'react-icons/io5';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { CaretSortIcon } from "@radix-ui/react-icons";
@@ -26,10 +26,21 @@ export const columns: ColumnDef<Subject>[] = [
           onClick={() => column.toggleSorting(isSortedAsc || !isSortedDesc)}
         >
           Nome
-          <CaretSortIcon className={`ml-2 h-4 w-4 ${isSortedAsc ? 'rotate-180' : ''}`} />
+          <CaretSortIcon className={` h-4 w-4 ${isSortedAsc ? 'rotate-180' : ''}`} />
         </Button>
       );
     },
+    cell: ({ row }) => {
+      console.log(row);
+
+      return (
+        <div className='w-full flex items-center p-5'>
+          {
+            row.original.name
+          }
+        </div>
+      )
+    }
   },
   {
     accessorKey: '_count.SubjectClass',
@@ -47,7 +58,7 @@ export const columns: ColumnDef<Subject>[] = [
             <CaretSortIcon className={`ml-2 h-4 w-4 ${isSortedAsc ? 'rotate-180' : ''}`} />
           </Button>
         </div>
-      );
+      )
     },
     cell: ({ row }) => {
       console.log(row);
@@ -55,7 +66,7 @@ export const columns: ColumnDef<Subject>[] = [
       return (
         <div className='w-full flex items-center justify-center'>
           {
-            row.original._count.SubjectClass
+            row.original     ? row.original._count.SubjectClass : '0'
           }
         </div>
       )

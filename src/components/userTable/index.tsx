@@ -15,7 +15,7 @@ export type HttpParams = {
 };
 
 type UserTableProps = {
-  role: 'STUDENT' | 'TEACHER';
+  role: 'STUDENT' | 'TEACHER' | 'ADMIN';
   columns: ColumnDef<User>[];
   data?: User[];
 };

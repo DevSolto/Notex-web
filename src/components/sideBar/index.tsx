@@ -1,7 +1,7 @@
 import logo from '../../assets/logo.png';
 import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
-import { IoBookOutline, IoCalendarNumberOutline, IoCalendarOutline, IoExitOutline, IoHomeOutline, IoLibraryOutline, IoMailUnreadOutline, IoRibbonOutline, IoSchoolOutline, IoSettingsOutline } from 'react-icons/io5';
+import { IoBookOutline, IoCalendarNumberOutline, IoCalendarOutline, IoExitOutline, IoHomeOutline, IoLibraryOutline, IoMailUnreadOutline, IoRibbonOutline, IoSchoolOutline, IoSettingsOutline, IoShieldOutline } from 'react-icons/io5';
 
 type MenuItem = {
   label: string;
@@ -26,6 +26,11 @@ const menuItems: MenuItem[] = [
     icon: <IoRibbonOutline className='text-xl' />
   },
   {
+    label: "Coordenadores",
+    link: "/coordenadores",
+    icon: <IoShieldOutline className='text-xl' />
+  },
+  {
     label: "Turmas",
     link: "/turmas",
     icon: <IoBookOutline className='text-xl' />
@@ -36,19 +41,9 @@ const menuItems: MenuItem[] = [
     icon: <IoLibraryOutline className='text-xl' />
   },
   {
-    label: "Calendário",
-    link: "/calendario",
-    icon: <IoCalendarNumberOutline className='text-xl' />
-  },
-  {
     label: "Comunicado",
     link: "/comunicados",
     icon: <IoMailUnreadOutline className='text-xl' />
-  },
-  {
-    label: "Horário",
-    link: "/horario",
-    icon: <IoCalendarOutline className='text-xl' />
   },
 ];
 
