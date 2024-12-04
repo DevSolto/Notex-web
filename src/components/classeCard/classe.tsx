@@ -63,7 +63,7 @@ export function Classe(props: ClasseProps) {
 
       try {
         const response = await axios.get<Classe>(
-          `http://localhost:4000/classes/${props.classeId}`
+          `https://q01b4kvh-4000.brs.devtunnels.ms/classes/${props.classeId}`
         );
         setData(response.data);
         setLoading(false);

@@ -37,7 +37,7 @@ export function Statement() {
           reports: Report[]
           totalPages: number
         }>(
-          `http://localhost:4000/reports?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}`
+          `https://q01b4kvh-4000.brs.devtunnels.ms/reports?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}`
         );
         setData(response.data.reports);
         setTotalPages(response.data.totalPages)

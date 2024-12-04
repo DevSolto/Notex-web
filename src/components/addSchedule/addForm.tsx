@@ -36,7 +36,7 @@ export const AddForm = (props: AddFormProps) => {
   const onSubmit = async (data: FormData) => {
     try {
       setIsSending(true);
-      await axios.post('http://localhost:4000/schedules', {
+      await axios.post('https://q01b4kvh-4000.brs.devtunnels.ms/schedules', {
         ...data,
         classId: props.classId,
         creatorId: 'cm21yz8ic0000lehae9xrq4t2'

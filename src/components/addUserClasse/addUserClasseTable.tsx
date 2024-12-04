@@ -45,7 +45,7 @@ export function AddUserClasseTable(props: UserTableProps) {
         total: number;
         totalPages: number;
       }>(
-        `http://localhost:4000/students/${props.classeId}?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}`
+        `https://q01b4kvh-4000.brs.devtunnels.ms/students/${props.classeId}?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}`
       );
       console.log(response);
       setTotalPages(response.data.totalPages);
@@ -62,7 +62,7 @@ export function AddUserClasseTable(props: UserTableProps) {
 
     try {
       const response: { data: { count: number } } = await axios.post(
-        `http://localhost:4000/studying`,
+        `https://q01b4kvh-4000.brs.devtunnels.ms/studying`,
         {
           classeId: props.classeId,
           usersId: selectedIds

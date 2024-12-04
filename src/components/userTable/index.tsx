@@ -43,7 +43,7 @@ export function UserTable(props: UserTableProps) {
         total: number;
         totalPages: number;
       }>(
-        `http://localhost:4000/users?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}&role=${httpParams.role}&search=${httpParams.search || ''}`
+        `https://verbose-acorn-5pg5gwvp6x437ppw-4000.app.github.dev/users?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}&role=${httpParams.role}&search=${httpParams.search || ''}`
       );
       setTotalPages(response.data.totalPages);
       setUsers(response.data.users);

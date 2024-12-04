@@ -23,7 +23,7 @@ export function ReportRol(props: ReportRolProps) {
     const fetchData = async () => {
       try {
         const response = await axios.get<User>(
-          `http://localhost:4000/users/${report.creatorId}`
+          `https://q01b4kvh-4000.brs.devtunnels.ms/users/${report.creatorId}`
         );
         setCreator(response.data);
 

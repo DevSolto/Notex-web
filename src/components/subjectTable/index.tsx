@@ -40,7 +40,7 @@ export function SubjectTable(props: SubjectTableProps) {
         total: number;
         totalPages: number;
       }>(
-        `http://localhost:4000/subjects?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}&search=${httpParams.search || ''}`
+        `https://q01b4kvh-4000.brs.devtunnels.ms/subjects?page=${httpParams.page}&limit=${httpParams.limit}&orderBy=${httpParams.orderBy}&order=${httpParams.order}&search=${httpParams.search || ''}`
       );
       console.log(response);
 

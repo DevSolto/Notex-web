@@ -41,8 +41,8 @@ export const AddForm = (props: AddFormProps) => {
     const fetchData = async () => {
       try {
         const [usersResponse, subjectsResponse] = await Promise.all([
-          axios.get('http://localhost:4000/users?role=TEACHER'),
-          axios.get('http://localhost:4000/subjects'),
+          axios.get('https://q01b4kvh-4000.brs.devtunnels.ms/users?role=TEACHER'),
+          axios.get('https://q01b4kvh-4000.brs.devtunnels.ms/subjects'),
         ]);
 
         setUsers(usersResponse.data.users);
@@ -62,7 +62,7 @@ export const AddForm = (props: AddFormProps) => {
   const onSubmit = async (data: FormData) => {
     try {
       setIsSending(true);
-      await axios.post('http://localhost:4000/subjectclass', {
+      await axios.post('https://q01b4kvh-4000.brs.devtunnels.ms/subjectclass', {
         ...data,
         classId: props.classId
       });

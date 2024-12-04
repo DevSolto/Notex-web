@@ -44,7 +44,7 @@ export function Classes() {
           classes: ClassData[]
           totalPages: number
         }>(
-          `http://localhost:4000/classes?page=${httpParams.page}&limit=${httpParams.limit}&year=${httpParams.year}&orderBy=${httpParams.orderBy}&order=${httpParams.order}`
+          `https://q01b4kvh-4000.brs.devtunnels.ms/classes?page=${httpParams.page}&limit=${httpParams.limit}&year=${httpParams.year}&orderBy=${httpParams.orderBy}&order=${httpParams.order}`
         );
         setData(response.data.classes);
         setTotalPages(response.data.totalPages)

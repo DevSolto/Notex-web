@@ -40,7 +40,7 @@ export const AddForm = (props: AddFormProps) => {
     try {
       setIsSending(true);
 
-      const response = await axios.post('http://localhost:4000/reports', { ...data, creatorId: "cm1n1gecd0000p20tk2szib7u" });
+      const response = await axios.post('https://q01b4kvh-4000.brs.devtunnels.ms/reports', { ...data, creatorId: "cm1n1gecd0000p20tk2szib7u" });
       setIsSending(false);
       props.setDialogOpen(false);
 

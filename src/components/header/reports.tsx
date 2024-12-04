@@ -30,7 +30,7 @@ export function Reports(props: ReportsProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<{ reports: Report[] }>(`http://localhost:4000/reports/not-viewed/${props.userId}`);
+        const response = await axios.get<{ reports: Report[] }>(`https://q01b4kvh-4000.brs.devtunnels.ms/reports/not-viewed/${props.userId}`);
         setData(response.data.reports);
       } catch (error) {
         setError("Ocorreu um erro ao buscar os dados.");
@@ -45,7 +45,7 @@ export function Reports(props: ReportsProps) {
     if (!reportId) return;
 
     try {
-      const url = `http://localhost:4000/users/${props.userId}/reports/${reportId}`;
+      const url = `https://q01b4kvh-4000.brs.devtunnels.ms/users/${props.userId}/reports/${reportId}`;
       await axios.patch(url, { viewed: true });
     } catch (error) {
       setError("Ocorreu um erro ao marcar como visualizado.");

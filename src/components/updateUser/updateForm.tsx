@@ -51,7 +51,7 @@ export const UpdateUserForm = (props: UpdateUserFormProps) => {
   const onSubmit = async (data: FormData) => {
     try {
       setIsSending(true);
-      const response = await axios.patch(`http://localhost:4000/users/${props.id}`, { ...data });
+      const response = await axios.patch(`https://q01b4kvh-4000.brs.devtunnels.ms/users/${props.id}`, { ...data });
 
       props.setUsers(prevUsers =>
         prevUsers.map(user =>
